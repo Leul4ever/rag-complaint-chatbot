@@ -1,4 +1,4 @@
-# 🤖 Intelligent Complaint Analysis (RAG)
+# 🤖 Intelligent Complaint Analysis (RAG Chatbot)
 
 [![Python](https://img.shields.io/badge/Python-3.8%2B-blue)](https://www.python.org/)
 [![Status](https://img.shields.io/badge/Status-Complete-brightgreen)]()
@@ -7,7 +7,7 @@
 
 ### Transform millions of CFPB complaints into actionable intelligence.
 
-**Intelligent Complaint Analysis** is a production-ready RAG system that allows users to interact with the vast **Consumer Financial Protection Bureau (CFPB)** database through a modern, conversational interface. 
+**Intelligent Complaint Analysis** is a powerful Retrieval-Augmented Generation (RAG) system that allows users to interact with the vast **Consumer Financial Protection Bureau (CFPB)** database through a modern, conversational interface. It bridges the gap between raw financial data and human-readable insights.
 
 ---
 
@@ -15,89 +15,122 @@
 
 ```mermaid
 graph TD
-    A[CFPB Raw Data] --> B[Processing & Cleaning]
-    B --> C[Stratified Sampling]
-    C --> D[Embedding Model: MiniLM-L6]
-    D --> E[FAISS Vector Store]
+    subgraph "Data Layer"
+        A[CFPB Raw CSV] --> B[Processing & Cleaning]
+        B --> C[Stratified Sampling]
+    end
+
+    subgraph "Knowledge Base"
+        C --> D[Embedding Model: MiniLM-L6]
+        D --> E[FAISS Vector Store]
+    end
     
-    F[User Query] --> G[Retriever]
-    E --> G
-    G --> H[Context Injection]
-    H --> I[LLM: LaMini-Flan-T5]
-    I --> J[Modern Streamlit UI]
+    subgraph "RAG Engine"
+        F[User Query] --> G[Retriever]
+        E --> G
+        G --> H[Prompt Orchestration]
+        H --> I[LLM: LaMini-Flan-T5]
+    end
+
+    subgraph "User Layer"
+        I --> J[Modern Streamlit UI]
+    end
 ```
 
 ---
 
-## ✨ Key Features
+## 📁 Project Structure
 
-- **🚀 Semantic Intelligence**: Search by meaning, not just keywords across five financial product domains.
-- **🛡️ Hallucination-Free**: Robust prompt engineering ensures the AI stays grounded in retrieved facts.
-- **📄 Evidence-Driven**: Every answer includes expandable citations for full transparency.
-- **🎨 Premium Chat UI**: A stylish dark-themed interface with streaming responses for a professional UX.
-- **🧩 Modular Backend**: Clean separation of concerns between data processing, vector management, and RAG orchestration.
-
----
-
-## 📁 Project Roadmap Accomplishments
-
-### ✅ Task 1: Data Foundations
-- Processed 9.6M complaints.
-- Implemented robust text cleaning and normalization.
-- Produced high-compression Parquet datasets.
-
-### ✅ Task 2: Vector Intelligence
-- Implemented stratified sampling for balanced representation.
-- Built a high-performance **FAISS** index with semantic overlap.
-- Modularized core architecture for enterprise maintenance.
-
-### ✅ Task 3: RAG Core Logic
-- Integrated local LLM inference for security and speed.
-- Conducted a high-score qualitative evaluation across 8 benchmark domains.
-
-### ✅ Task 4: Interactive Interface
-- Developed a modern **Streamlit** dashboard.
-- Features: Conversational memory, Source citations, and streaming effects.
-
----
-
-## 🛠️ Quick Start
-
-### 1. Installation
 ```bash
-# Clone and enter
-git clone https://github.com/yourusername/rag-complaint-chatbot.git
+rag-complaint-chatbot/
+├── data/                       # Data storage (Raw & Processed)
+│   ├── raw/                    # Original CFPB datasets
+│   └── processed/              # Cleaned Parquet & sampled data
+├── notebooks/                  # Experimental analysis & EDA
+├── reports/                    # Task-specific & final documentation
+│   ├── figures/                # Visualizations (EDA, UI)
+│   ├── task-1.md               # EDA & Preprocessing Report
+│   ├── task-2.md               # Vector Store Report
+│   ├── task-3.md               # RAG Pipeline Report
+│   ├── task-4.md               # UI Development Report
+│   └── final-report.md         # Narrative Project Summary
+├── src/                        # Core Application Engine
+│   ├── app.py                  # Streamlit Web Interface
+│   ├── config.py               # Constants & Configurations
+│   ├── data_processing.py      # Cleaning & Sampling logic
+│   ├── vector_manager.py       # FAISS & Embedding handling
+│   ├── retriever.py            # Similarity search logic
+│   └── rag_pipeline.py         # LLM & Context Orchestration
+├── vector_store/               # Persisted FAISS Index & Metadata
+├── requirements.txt            # Project dependencies
+└── README.md                   # You are here
+```
+
+---
+
+## 🚀 Getting Started (Initialization)
+
+### 1. Prerequisites
+- Python 3.8+
+- 8GB+ RAM recommended for local model inference.
+
+### 2. Setup
+```bash
+# Clone the repository
+git clone https://github.com/Leul4ever/rag-complaint-chatbot.git
 cd rag-complaint-chatbot
 
-# Environment setup
+# Create virtual environment
 python -m venv venv
-source venv/bin/activate  # Or venv\Scripts\activate on Windows
+venv\Scripts\activate  # Windows
+# source venv/bin/activate  # Linux/Mac
 
 # Install dependencies
 pip install -r requirements.txt
 ```
 
-### 2. Launch the AI Analyst
+### 3. Run the Application
 ```bash
 streamlit run src/app.py
 ```
 
 ---
 
-## 📖 Complete Documentation
+## �️ Detailed Project Journey
 
-- 🔍 **[Final Project Report](reports/final-report.md)**: Deep dive into methodology and findings.
-- 📊 **[Task 1: EDA & Preprocessing](reports/task-1.md)**
-- 🗄️ **[Task 2: Vector Store Setup](reports/task-2.md)**
-- 🧠 **[Task 3: RAG Core Implementation](reports/task-3.md)**
-- 🌐 **[Task 4: Interactive Chat Interface](reports/task-4.md)**
+### � Task 1: EDA & Preprocessing
+**Objective**: Understand 9.6M complaints and prepare a high-quality subset.
+- **Actions**: Filtered for 5 core products (Credit Card, Debt Collection, Loan, Savings, Money Transfers).
+- **Outcome**: Implemented a cleaning pipeline (boilerplate removal, whitespace normalization) reducing 6GB raw data to a 97MB optimized Parquet file.
+
+### 🗄️ Task 2: Vector Store Setup
+**Objective**: Convert text into searchable mathematical vectors.
+- **Actions**: Applied stratified sampling of 15,000 narratives. Used `all-MiniLM-L6-v2` for embeddings.
+- **Outcome**: A persisted **FAISS** index containing ~42,000 context chunks with optimal semantic overlap.
+
+### 🧠 Task 3: RAG Core Logic
+**Objective**: Build the "brain" of the chatbot.
+- **Actions**: Integrated the `LaMini-Flan-T5-248M` model for local CPU inference. Designed a robust "Financial Analyst" prompt.
+- **Outcome**: A RAG pipeline that retrieves top-5 relevant chunks and generates grounded, halluncination-free answers.
+
+### 🌐 Task 4: Interactive UI
+**Objective**: provide a premium experience for non-technical users.
+- **Actions**: Built a **Streamlit** app with custom CSS, chat history, and streaming.
+- **Outcome**: An interface where users see token-by-token answers and can expand "Source Documents" to verify every fact.
+
+---
+
+## ✨ Features that WOW
+- **🚀 Semantic Search**: Answers questions based on meaning, not just exact keywords.
+- **🛡️ Radical Transparency**: Direct citations linked to every AI-generated response.
+- **🎨 Modern Dark UI**: Polished design with custom-styled chat bubbles and gradient accents.
+- **⚡ Local & Fast**: Optimized for CPU inference using state-of-the-art distilled models.
 
 ---
 
 ## 🤝 Acknowledgments
-- **CFPB** for the high-value public dataset.
-- **Hugging Face** for the state-of-the-art model zoo.
-- **Streamlit** for the powerful UI framework.
+- **CFPB** for the comprehensive public database.
+- **Hugging Face** & **LangChain** for the open-source building blocks.
 
 ---
-**Status**: `Ready for Production Deployment` ✅
+**Last Updated**: January 3, 2026 ✅
