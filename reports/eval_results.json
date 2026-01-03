@@ -1,0 +1,58 @@
+[
+    {
+        "Question": "What are common complaints about unauthorized credit card charges?",
+        "Generated Answer": "The common complaints about unauthorized credit card charges include lost/stolen card, fraud, fraud cases, and charges made by American Express.",
+        "Retrieved Sources": "ID: 3647591 | My discover card was lost/stolen in XX/XX/2020 sometime because it was used in my area so I believe ...\nID: 3788614 | I have had ( credit card ) charges denied three times in three weeks. Our bill is paid in full each ...",
+        "Quality Score (1-5)": "",
+        "Comments/Analysis": ""
+    },
+    {
+        "Question": "What issues do consumers face with savings account interest rates?",
+        "Generated Answer": "Consumers are misled by the interest rates that are included in savings account interest rates, which are often misleading and not mentioned in the provided context.",
+        "Retrieved Sources": "ID: 3130047 | I have been a member of BB & T since XXXX. Back in XXXX I switched my account so I would not have to...\nID: 2778366 | Greetings, My wife and I for well over a decade have had several accounts with PNC ( formerly XXXX X...",
+        "Quality Score (1-5)": "",
+        "Comments/Analysis": ""
+    },
+    {
+        "Question": "What are the main reasons for debt collection complaints mentioned?",
+        "Generated Answer": "The main reasons for debt collection complaints mentioned are not specified in the provided context.",
+        "Retrieved Sources": "ID: 2373120 | There is collections reported to my credit reports but I do n't have any knowledge of the alleged de...\nID: 9249146 | I don't recall having a contractual relationship with this collection company. Please give proof tha...",
+        "Quality Score (1-5)": "",
+        "Comments/Analysis": ""
+    },
+    {
+        "Question": "Describe problems related to money transfers and virtual currency.",
+        "Generated Answer": "I'm sorry, but there is no specific answer to this question as there is no connection between money transfers and virtual currency. Please provide a specific question related to money transfers and virtual currency.",
+        "Retrieved Sources": "ID: 3686114 | XXXX XXXX XXXX XXXX XXXX XXXX, MD XXXX XXXX XX/XX/2020 CEO/Director Money Gram Payment Systems, Inc ...\nID: 7439825 | The issue is regarding Venmo. Venmo suspended my account for the reason of \" suspicious activity '' ...",
+        "Quality Score (1-5)": "",
+        "Comments/Analysis": ""
+    },
+    {
+        "Question": "What do consumers complain about regarding personal loan fees?",
+        "Generated Answer": "Consumers complain about the lack of transparency in the financial industry and the inaccurate reporting on credit history caused by the autopay disconnection and ACH activity. They also worry that Self Lender's actions could lead to negative credit reports and damage to families.",
+        "Retrieved Sources": "ID: 8005089 | The company responded to a previous complaint but has not answered direct questions regarding the in...\nID: 8416836 | I took out a loan from Credit FreshXXXX XXXX XXXX  in XX/XX/year>. Their loans are extremely predato...",
+        "Quality Score (1-5)": "",
+        "Comments/Analysis": ""
+    },
+    {
+        "Question": "How are identity theft complaints described in the narratives?",
+        "Generated Answer": "Identity theft complaints are described as a result of fraudulent, inaccurate, and false information found on consumer credit accounts and financial activities, and are filed by individuals, including W.Fargo and Citizens Bank.",
+        "Retrieved Sources": "ID: 12736502 | XXXX XXXX XXXX XXXX, XXXX 1992 This CFPB complaint has been filed to request pursuant to FCRA 605B (...\nID: 7062068 | I believe that I am a victim of fraud and/or identity theft. For the past two years, the thieves hav...",
+        "Quality Score (1-5)": "",
+        "Comments/Analysis": ""
+    },
+    {
+        "Question": "What are the recurring problems with credit card rewards programs?",
+        "Generated Answer": "The recurring problems with credit card rewards programs are that the rewards program is not as advertised and requires new charges to the credit card or forfeiture of reward dollars anytime the reward is used. The customer was disappointed with the new balance and was prevented from redeeming the rewards due to the inactivity of the account. The bank closed the account and did not offer a refund for the remaining balances. The customer also reported receiving false statements in the bank's email regarding the rewards program. The bank needs to investigate the issue.",
+        "Retrieved Sources": "ID: 3454618 | I had a chase amazon rewards credit card where I was making a XXXX dollar minimum payment. I had gon...\nID: 5883376 | I have been a Bank of America credit card customer for 10+ years. My credit card has been unused for...",
+        "Quality Score (1-5)": "",
+        "Comments/Analysis": ""
+    },
+    {
+        "Question": "What issues do people have with bank account service fees?",
+        "Generated Answer": "People have issues with bank account service fees due to the slogan they promote, lack of reporting, inconsistent customer service, and potential for fees to be added. The customer service is not responsive to complaints and does not follow their own policies. The customer is unable to contact the bank and has multiple attempts to cancel fees.",
+        "Retrieved Sources": "ID: 10604200 | For about the last year chime support is not good. The biggest problem is with their features. The s...\nID: 6476450 | Fees on account...",
+        "Quality Score (1-5)": "",
+        "Comments/Analysis": ""
+    }
+]

@@ -79,3 +79,48 @@ class VectorManager:
         except Exception as e:
             logger.error(f"Error saving vector store: {e}")
             raise
+
+    def load_vector_store(self, store_dir):
+        """Load FAISS index and metadata from disk."""
+        logger.info(f"Loading vector store from {store_dir}...")
+        try:
+            index_path = os.path.join(store_dir, "complaints.index")
+            metadata_path = os.path.join(store_dir, "metadata.pkl")
+            
+            if not os.path.exists(index_path) or not os.path.exists(metadata_path):
+                raise FileNotFoundError(f"Vector store files not found in {store_dir}")
+                
+            index = faiss.read_index(index_path)
+            with open(metadata_path, "rb") as f:
+                metadata = pickle.load(f)
+                
+            logger.info("Vector store loaded successfully.")
+            return index, metadata
+        except Exception as e:
+            logger.error(f"Error loading vector store: {e}")
+            raise
+
+    def search(self, index, metadata, query, k=5):
+        """Perform similarity search for a query string."""
+        logger.info(f"Searching for: {query}")
+        try:
+            # Embed query
+            query_vector = self.model.encode([query]).astype('float32')
+            
+            # Search index
+            distances, indices = index.search(query_vector, k)
+            
+            # Retrieve results
+            results = []
+            for i, idx in enumerate(indices[0]):
+                if idx != -1:
+                    results.append({
+                        'content': metadata[idx]['original_text'],
+                        'metadata': metadata[idx],
+                        'score': float(distances[0][i])
+                    })
+            
+            return results
+        except Exception as e:
+            logger.error(f"Error during search: {e}")
+            raise

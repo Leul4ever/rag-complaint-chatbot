@@ -26,3 +26,13 @@ CHUNK_OVERLAP = 50
 
 # Embedding Configuration
 EMBEDDING_MODEL_NAME = 'all-MiniLM-L6-v2'
+
+# RAG Configuration
+TOP_K = 5
+PROMPT_TEMPLATE = """You are a financial analyst assistant for CrediTrust. Your task is to answer questions about customer complaints. Use the following retrieved complaint excerpts to formulate your answer. If the context doesn't contain the answer, state that you don't have enough information.
+
+Context: {context}
+
+Question: {question}
+
+Answer:"""
