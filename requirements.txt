@@ -1,21 +1,32 @@
+# Data Processing
 pandas
 numpy
-matplotlib
-seaborn
+pyarrow
+
+# Machine Learning & NLP
 scikit-learn
+sentence-transformers
+tokenizers
+torch
+faiss-cpu
+
+# LLM Frameworks
 langchain
 langchain-community
+langchain-text-splitters
 chromadb
-sentence-transformers
+
+# Visualization
+matplotlib
+seaborn
+
+# UI & Integration
 gradio
 streamlit
+python-dotenv
+huggingface-hub
+
+# Development
 pytest
 jupyter
 ipykernel
-python-dotenv
-huggingface-hub
-pyarrow
-langchain-text-splitters
-sentence-transformers
-faiss-cpu
-torch
