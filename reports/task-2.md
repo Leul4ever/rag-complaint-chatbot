@@ -29,17 +29,21 @@ Large narratives are often ineffective when embedded as a single vector because 
     - **Compatibility**: It produces 384-dimensional vectors, which are compact and efficient for FAISS indexing.
     - **Benchmark**: This model is widely recognized as a "sweet spot" for RAG applications involving consumer text.
 
-## 4. Vector Store Implementation
-- **Library**: FAISS (Facebook AI Similarity Search).
-- **Metadata Management**:
-    - Crucially, we do not just store the vector. We maintain a separate `metadata.pkl` mapping that links each vector index to:
-        - `Complaint ID`: To trace back to the original database record.
-        - `Product`: For category-specific filtering if needed later.
-        - `Original Text`: To provide the LLM with the raw context for generation.
+## 4. Modular Architecture (Higher Standards)
+To ensure maintainability and robustness, the pipeline was refactored into a modular architecture:
+- **`src/config.py`**: Centralized all project constants (file paths, chunk sizes, product mappings).
+- **`src/data_processing.py`**: Handles all data-centric operations including loading, text cleaning, and stratified sampling. Includes defensive checks for data integrity.
+- **`src/vector_manager.py`**: A class-based manager for the vector store. It handles text chunking, embedding generation using `SentenceTransformers`, and FAISS index persistence.
+- **`src/create_vector_store.py`**: A clean, high-level entry point that orchestrates the entire pipeline.
+
+### Robustness & Error Handling
+- **Input Validation**: The pipeline verifies the existence of the raw dataset before processing.
+- **Logging**: Integrated the `logging` module to provide real-time status updates and trace errors.
+- **Exception Guards**: Added `try-except` blocks around file I/O, model loading, and indexing operations to prevent silent failures and provide descriptive error messages.
 
 ## 5. Execution Summary
 - **Loaded Data**: ~9,000,000 raw complaints (filtered for 5 target products).
 - **Sampled Data**: 15,000 complaints (stratified perfectly: 3,000 per product).
 - **Total Chunks Generated**: 41,781.
-- **Embedding Format**: 384-dimensional dense vectors.
-- **Persistence**: Refreshed index saved as `vector_store/complaints.index` and metadata as `vector_store/metadata.pkl`.
+- **Embedding Format**: 384-dimensional dense vectors using `all-MiniLM-L6-v2`.
+- **Persistence**: Index saved as `vector_store/complaints.index` and metadata as `vector_store/metadata.pkl`.
