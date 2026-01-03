@@ -1,5 +1,8 @@
 # Intelligent Complaint Analysis for Financial Services - RAG Chatbot
 
+> [!NOTE]
+> This project is currently in the **EDA and Preprocessing** phase (Task 1).
+
 [![Python](https://img.shields.io/badge/Python-3.8%2B-blue)](https://www.python.org/)
 [![Status](https://img.shields.io/badge/Status-In%20Development-yellow)]()
 [![Task 1](https://img.shields.io/badge/Task%201-Complete-green)]()
