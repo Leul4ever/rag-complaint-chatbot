@@ -33,10 +33,11 @@ wheels/
 .venv
 venv/
 
-# Data
+# Data files
 data/raw/*
 data/processed/*
-!data/raw/.gitkeep
+*.csv
+!*/.gitkeep
 !data/processed/.gitkeep
 vector_store/*
 !vector_store/.gitkeep
