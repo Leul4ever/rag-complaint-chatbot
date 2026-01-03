@@ -36,6 +36,7 @@ venv/
 # Data
 data/raw/*
 data/processed/*
+data/filtered_complaints.csv
 !data/raw/.gitkeep
 !data/processed/.gitkeep
 vector_store/*
