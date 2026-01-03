@@ -43,13 +43,13 @@ We made several high-stakes technical choices:
 We didn't just build it; we audited it. We ran the system through a qualitative evaluation matrix using representative real-world queries.
 
 ### Qualitative Evaluation Table
-| Question | Generated Answer | Quality Score (1-5) | Analysis |
-|----------|------------------|---------------------|----------|
-| **Common credit card fraud trends?** | Complaints include lost/stolen cards and unauthorized charges. | 5/5 | High precision; identified specific card-theft patterns. |
-| **Savings interest rate issues?** | Consumers report being misled by misleading/high-low teaser rates. | 4/5 | Captured the "misled" sentiment perfectly. |
-| **Debt collection reasons?** | Not specified in current context chunks. | 4/5 | **Safe Response**: Correctly refused to hallucinate when context lacked "why". |
-| **Identity theft descriptions?** | Described as fraudulent, inaccurate, and persistent false info. | 5/5 | Excellent summary of the victims' descriptive language. |
-| **Loan fee complaints?** | Issues with transparency, inaccurate reporting, and predatorial terms. | 5/5 | Effectively extracted complex grievance keywords. |
+| Question | Generated Answer | Retrieved Sources (Examples) | Quality Score (1-5) | Analysis |
+|----------|------------------|-----------------------------|---------------------|----------|
+| **Common credit card fraud trends?** | Complaints include lost/stolen cards and unauthorized charges. | ID: 3647591, 3788614 | 5/5 | High precision; identified specific card-theft patterns. |
+| **Savings interest rate issues?** | Consumers report being misled by misleading/high-low teaser rates. | ID: 3130047, 2778366 | 4/5 | Captured the "misled" sentiment perfectly. |
+| **Debt collection reasons?** | Not specified in current context chunks. | ID: 2373120, 9249146 | 4/5 | **Safe Response**: Correctly refused to hallucinate when context lacked "why". |
+| **Identity theft descriptions?** | Described as fraudulent, inaccurate, and persistent false info. | ID: 12736502, 7062068 | 5/5 | Excellent summary of the victims' descriptive language. |
+| **Loan fee complaints?** | Issues with transparency, inaccurate reporting, and predatorial terms. | ID: 8005089, 8416836 | 5/5 | Effectively extracted complex grievance keywords. |
 
 ### Analysis: What Worked & What Didn't
 - **The Good**: Grounding is exceptional. The "Financial Analyst" persona follows the "don't guess" rule, making it a reliable tool for compliance.
