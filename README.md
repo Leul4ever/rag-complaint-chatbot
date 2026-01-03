@@ -1,11 +1,11 @@
 # Intelligent Complaint Analysis for Financial Services - RAG Chatbot
 
 > [!NOTE]
-> This project is currently in the **EDA and Preprocessing** phase (Task 1).
+> This project is currently in the **RAG Implementation** phase (Task 3).
 
 [![Python](https://img.shields.io/badge/Python-3.8%2B-blue)](https://www.python.org/)
 [![Status](https://img.shields.io/badge/Status-In%20Development-yellow)]()
-[![Task 1](https://img.shields.io/badge/Task%201-Complete-green)]()
+[![Task 2](https://img.shields.io/badge/Task%202-Complete-green)]()
 
 ## 📋 Project Overview
 
@@ -176,12 +176,12 @@ See [`requirements.txt`](requirements.txt) for the complete list of dependencies
 - [x] Generate EDA visualizations
 - [x] Document findings in comprehensive report
 
-### 🔄 Task 2: Vector Store Setup (In Progress)
-- [ ] Generate embeddings for complaint narratives
-- [ ] Set up vector database (FAISS/Chroma/Pinecone)
-- [ ] Index processed complaints
-- [ ] Implement similarity search
-- [ ] Optimize retrieval performance
+### ✅ Task 2: Vector Store Setup (Complete)
+- [x] Generate embeddings for complaint narratives
+- [x] Set up vector database (FAISS)
+- [x] Index processed complaints
+- [x] Implement similarity search
+- [x] Document methodology in [Task 2 Report](reports/task-2.md)
 
 ### 📋 Task 3: RAG Pipeline Development (Planned)
 - [ ] Design RAG architecture
@@ -272,4 +272,4 @@ For questions or feedback, please contact:
 ---
 
 **Last Updated**: January 3, 2026  
-**Project Status**: Task 1 Complete ✅ | Task 2 In Progress 🔄
+**Project Status**: Task 1 & 2 Complete ✅ | Task 3 Planned �
