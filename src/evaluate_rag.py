@@ -14,7 +14,7 @@ test_questions = [
     "What do consumers complain about regarding personal loan fees?",
     "How are identity theft complaints described in the narratives?",
     "What are the recurring problems with credit card rewards programs?",
-    "What issues do people have with bank account service fees?"
+    ""
 ]
 
 def run_evaluation():

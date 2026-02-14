@@ -1,0 +1,46 @@
+# Capstone Project Selection & Planning Draft
+
+**Project Selected:** Intelligent Complaint Analysis Using a RAG-Powered Chatbot (Financial Services)
+
+## Form Responses
+
+### 1. Why did you choose this project?
+I chose this project because it offers the perfect balance of **technical depth** (Generative AI & Data Engineering) and **business relevance**. It allows me to demonstrate advanced engineering skills such as building a scalable RAG pipeline, implementing vector search, and deploying LLM applications. It currently exists as a prototype, making it an ideal candidate to upgrade with **MLOps best practices**, **automated evaluation (Ragas)**, and **containerization**, thereby significantly improving its robustness and "production-readiness."
+
+### 2. What is the business problem your project solves?
+Financial institutions receive thousands of unstructured customer complaints daily, overwhelming support teams and leading to slow storage and resolution. This project automates the analysis of these complaints, allowing non-technical stakeholders to instantly query the data for insights (e.g., "What are the top 3 complaints this week?") without needing SQL or data analysts, drastically reducing time-to-insight.
+
+### 3. What metrics define success for this project?
+1.  **Retrieval Accuracy:** Achieve a **Hit Rate > 85%** on the evaluation dataset (using Ragas/TruLens).
+2.  **System Latency:** Maintain an average **Query Response Time < 3 seconds** for end-to-end generation.
+3.  **Deployment Reliability:** Successful containerization with **Docker** and a passed CI/CD pipeline build.
+
+### 4. What was completed in the original project?
+*   Built a basic RAG pipeline using LangChain and OpenAI/OpenSource LLMs.
+*   Implemented a Vector Database (ChromaDB/Pinecone) for document storage.
+*   Developed a functional Streamlit frontend for user interaction.
+*   Performed initial data cleaning on the financial complaints dataset.
+
+### 5. What was NOT completed or needs improvement?
+*   **Evaluation:** No quantitative evaluation of the RAG pipeline (hallucination checks, answer relevance).
+*   **Advanced Retrieval:** Used simple chunking; lacks hybrid search or query expansion techniques.
+*   **DevOps:** The project is not containerized (Docker) and lacks a CI/CD pipeline.
+*   **Scalability:** No caching mechanism for frequent queries, leading to higher API costs and latency.
+
+### 6. What engineering improvements will you implement?
+1.  **Advanced RAG Techniques:** Implement **Hybrid Search** (Keyword + Semantic) and **Re-ranking** to improve retrieval quality.
+2.  **Automated Evaluation Pipeline:** Integrate **Ragas** to score responses on Faithfulness and Answer Relevance automatically.
+3.  **MLOps & DevOps:** Dockerize the application and set up a **CI/CD pipeline** (GitHub Actions) for automated testing.
+4.  **Backend Optimization:** Refactor the codebase into modular microservices (API vs. Frontend) and implement **caching** for cost reduction.
+
+### 7. What is your biggest risk or blocker?
+**Risk:** **LLM Hallucination & Accuracy.** The model might generate plausible but incorrect insights from the financial data.
+**Mitigation:** I will implement a **"Citation" feature** where the model must reference the specific document chunk it used for the answer, and I will use the **Ragas evaluation framework** to rigorously test for faithfulness before final submission.
+
+### 8. Day-by-Day Execution Plan
+*   **Day 1: Refactoring & Dockerization.** Restructure code into modular paths (src, tests). Create `Dockerfile` and `docker-compose.yml`. Verify local run.
+*   **Day 2: Advanced Data Pipeline.** Implement "Parent Document Retriever" or "Hybrid Search" to improve context quality. Re-index the vector DB.
+*   **Day 3: Evaluation Framework.** Set up the Ragas evaluation suite. Create a "Golden Dataset" of Q&A pairs. Run baseline benchmarks.
+*   **Day 4: Backend Optimization.** Implement caching (Redis or memory) to speed up repeated queries. Optimize prompt engineering for financial context.
+*   **Day 5: CI/CD & Testing.** Write unit tests for the API. Set up GitHub Actions to run tests on push. Ensure the Docker build passes in CI.
+*   **Day 6: Final Polish & Documentation.** Update the Streamlit UI with a "Sources" tab. Write the final `README.md` and Capstone Report. Record demo video.

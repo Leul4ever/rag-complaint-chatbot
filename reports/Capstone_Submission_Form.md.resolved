@@ -1,0 +1,49 @@
+# Capstone Project Selection Form Responses
+
+**Student Email:** leulabera70@gmail.com
+**Student Name:** Leul Abera
+
+---
+
+### Which project have you selected for your capstone?
+Intelligent Complaint Analysis Using a RAG-Powered Chatbot (Financial Services)
+
+### Why did you choose this project? (3-5 sentences)
+I chose this project because it perfectly demonstrates the intersection of modern Generative AI (RAG pipelines) and robust Data Engineering. It challenges me to solve complex real-world problems like hallucinations and latency optimization while allowing me to showcase skills in vector databases, prompt engineering, and MLOps. The original prototype showed promise but lacked the rigorous evaluation and production-readiness required for enterprise deployment, making it an ideal candidate for significant engineering improvements.
+
+### What is the business problem your project solves? (2-3 sentences)
+Financial institutions are overwhelmed by thousands of unstructured customer complaints daily, leading to slow response times and missed insights. This project solves this by automating the analysis of complaint text, enabling non-technical stakeholders to instantly query trends and root causes without needing manual review or SQL expertise.
+
+### What metrics define success for this project? (2-3 specific outcomes)
+1.  **Retrieval Accuracy:** Achieve a **Hit Rate > 85%** on the evaluation dataset (measured via Ragas/TruLens).
+2.  **System Latency:** Maintain an average **End-to-End Query Response Time < 3 seconds** for typical questions.
+3.  **Deployment Reliability:** Successfully containerize the entire stack (API, Frontend, Vector DB) with **Docker** and pass a CI/CD build pipeline on GitHub Actions.
+
+### What was completed in the original project?
+*   Built a basic RAG pipeline using LangChain and OpenAI/Mistral models.
+*   Implemented a Vector Database (ChromaDB) for storing and retrieving document chunks.
+*   Developed a functional Streamlit frontend for user interaction.
+*   Performed initial data cleaning and chunking on the financial complaints dataset.
+
+### What was NOT completed or needs improvement?
+*   **Evaluation:** The system currently lacks any quantitative metric (like Faithfulness or Relevance scores) to measure hallucination rates.
+*   **DevOps:** The application runs only locally; it is not containerized (Docker) and has no CI/CD pipeline for automated testing.
+*   **Retrieval Quality:** The current simple chunking strategy leads to context fragmentation; advanced techniques like Hybrid Search or Parent Document Retrieval are missing.
+
+### What engineering improvements will you implement?
+1.  **Strict Evaluation Function:** Integrate the **Ragas framework** to automatically score every response for Faithfulness and Context Relevance.
+2.  **Advanced Retrieval:** Implement **Hybrid Search (Keyword + Semantic)** and re-ranking to prioritize the most relevant document chunks.
+3.  **Production Deployment:** Containerize the application using **Docker** and set up a **CI/CD pipeline** (GitHub Actions) to automate unit tests and linting.
+4.  **Performance Optimization:** Implement **Caching** (Redis/Memory) for frequent queries to reduce API costs and latency.
+
+### What is your biggest risk or blocker?
+**Risk:** **LLM Hallucination & Accuracy.** The model might generate plausible but factually incorrect insights from the financial data.
+**Mitigation:** I will implement a **"Citation" feature** where the model must strictly reference the specific document chunk it used for the answer, and I will use the **Ragas evaluation framework** to rigorously test against a "Golden Dataset" before final submission.
+
+### Day-by-Day Execution Plan
+*   **Day 1: Environment & Dockerization.** Refactor existing code into modular structure. Create `Dockerfile` and `docker-compose.yml` to run the API, Frontend, and Vector DB services. Verify local container functionality.
+*   **Day 2: Advanced RAG Implementation.** Upgrade the retrieval pipeline to use **Hybrid Search** (combining BM25 keyword search with vector embeddings). Implement re-ranking to improve context quality.
+*   **Day 3: Evaluation Framework Setup.** Install and configure **Ragas**. Generate a synthetic test set (Golden Dataset) of Q&A pairs from the data. Run baseline benchmarks to establish current accuracy.
+*   **Day 4: Performance & Caching.** Implement a caching layer (e.g., in-memory or Redis) to store answers for identical queries. Optimize prompt templates to reduce token usage and latency.
+*   **Day 5: CI/CD Pipeline.** Set up a GitHub Actions workflow to run linting and unit tests on every push. Ensure the Docker build succeeds in the CI environment.
+*   **Day 6: Final Integration & Documentation.** Polish the Streamlit UI to display source citations. detailed `README.md` with setup instructions. Record the final demo video and submit the improvement report.

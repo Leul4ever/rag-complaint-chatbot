@@ -1,11 +1,20 @@
 import logging
-from src.config import VECTOR_STORE_DIR, TOP_K
+from typing import List, Dict, Any
+from src.config import paths, rag_cfg
 from src.vector_manager import VectorManager
 
 logger = logging.getLogger(__name__)
 
 class ComplaintRetriever:
-    def __init__(self, store_dir=VECTOR_STORE_DIR):
+    """Handles the retrieval of relevant complaints based on user queries."""
+
+    def __init__(self, store_dir: str = paths.vector_store_dir):
+        """
+        Initialize the retriever by loading the vector store.
+        
+        Args:
+            store_dir: The directory where the FAISS index and metadata are stored.
+        """
         try:
             self.vector_manager = VectorManager()
             self.index, self.metadata = self.vector_manager.load_vector_store(store_dir)
@@ -13,8 +22,17 @@ class ComplaintRetriever:
             logger.error(f"Failed to initialize ComplaintRetriever: {e}")
             raise
 
-    def retrieve(self, query, k=TOP_K):
-        """Retrieve top-k relevant complaints for a query."""
+    def retrieve(self, query: str, k: int = rag_cfg.top_k) -> List[Dict[str, Any]]:
+        """
+        Retrieve top-k relevant complaints for a given query.
+        
+        Args:
+            query: The user's query string.
+            k: The number of results to retrieve.
+            
+        Returns:
+            A list of dictionary results, each containing content and metadata.
+        """
         try:
             results = self.vector_manager.search(
                 self.index, 
