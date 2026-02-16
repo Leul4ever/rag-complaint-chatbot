@@ -12,7 +12,7 @@ from src.vector_manager import VectorManager
 
 def test_clean_text():
     """Test the text cleaning utility."""
-    assert clean_text("I am writing to file a complaint. FIX THIS!") == ". fix this!"
+    assert clean_text("I am writing to file a complaint. FIX THIS!") == "fix this!"
     assert clean_text(123) == ""
     assert clean_text("   Hello   World   ") == "hello world"
 

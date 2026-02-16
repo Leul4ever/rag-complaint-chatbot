@@ -26,6 +26,8 @@ def clean_text(text: Any) -> str:
     text = text.replace("i am writing to file a complaint", "")
     # Remove special characters while keeping numbers/punctuation
     text = re.sub(r'[^a-zA-Z0-9\s.,!?]', '', text)
+    # Remove leading punctuation that might be left over from boilerplate
+    text = re.sub(r'^[.,!?\s]+', '', text)
     # Collapse spaces
     text = re.sub(r'\s+', ' ', text).strip()
     return text
