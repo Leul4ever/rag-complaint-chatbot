@@ -138,7 +138,7 @@ with tab1:
                 with st.expander(f"📚 View {len(message['sources'])} Source Documents"):
                     for idx, source in enumerate(message["sources"]):
                         st.markdown(f"**Source {idx+1} (ID: `{source['complaint_id']}`)**")
-                        st.caption(f"Product: {source['product']}")
+                        st.caption(f"Product: {source['product']} | Retrieval: `Hybrid (FAISS+BM25)`")
                         st.info(source.get('original_text', 'No text available')[:300] + "...")
 
     # --- User Input & Processing ---
@@ -169,7 +169,7 @@ with tab1:
                         with st.expander(f"📚 View {len(sources)} Source Documents"):
                             for idx, source in enumerate(sources):
                                 st.markdown(f"**Source {idx+1} (ID: `{source['complaint_id']}`)**")
-                                st.caption(f"Product: {source['product']}")
+                                st.caption(f"Product: {source['product']} | Retrieval: `Hybrid (FAISS+BM25)`")
                                 st.info(source.get('original_text', 'No text available')[:300] + "...")
 
                 except Exception as e:
@@ -230,6 +230,32 @@ with tab2:
             else:
                 st.write("Explanations are being generated for this category...")
 
+        st.markdown("---")
+
+        # Technical Evaluation (Ragas)
+        st.subheader("🧪 Technical Audit (Ragas Evaluation)")
+        metrics_path = os.path.join(paths.reports_dir, "ragas_metrics.json")
+        if os.path.exists(metrics_path):
+            try:
+                metrics_df = pd.read_json(metrics_path)
+                avg_faithfulness = metrics_df['faithfulness'].mean()
+                avg_relevancy = metrics_df['answer_relevancy'].mean()
+                
+                m1, m2 = st.columns(2)
+                m1.metric("Average Faithfulness", f"{avg_faithfulness:.2%}", help="Measures if the answer is derived directly from the sources.")
+                m2.metric("Answer Relevancy", f"{avg_relevancy:.2%}", help="Measures how relevant the answer is to the user question.")
+                
+                with st.expander("🔍 View Detailed Question-Level Scoring"):
+                    st.dataframe(metrics_df[['question', 'faithfulness', 'answer_relevancy']], use_container_width=True)
+            except Exception as e:
+                st.error(f"Error loading evaluation metrics: {e}")
+        else:
+            st.warning("Automated Ragas audit hasn't been run yet.")
+            if st.button("🚀 Trigger Technical Audit"):
+                with st.spinner("Running Ragas evaluation on Golden Dataset..."):
+                    os.system("python src/evaluate.py")
+                    st.rerun()
+
 # --- Sidebar Controls ---
 with st.sidebar:
     st.header("⚙️ Controls")
@@ -241,7 +267,8 @@ with st.sidebar:
     st.markdown("**System Status**")
     st.success("RAG Pipeline Active")
     st.markdown(f"**Model:** `{rag_pipeline.model.name_or_path}`")
-    st.markdown("**Vector Store:** `FAISS-CPU`")
+    st.markdown("**Retrieval:** `Hybrid (FAISS + BM25)`")
+    st.markdown("**Evaluation:** `Ragas (Automated)`")
     
     st.markdown("---")
     st.markdown("**Engineering Excellence**")

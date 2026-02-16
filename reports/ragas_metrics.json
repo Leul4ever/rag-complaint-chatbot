@@ -1,0 +1,42 @@
+[
+    {
+        "question": "What are common complaints about unauthorized credit card charges?",
+        "faithfulness": 0.88,
+        "answer_relevancy": 0.92
+    },
+    {
+        "question": "What issues do consumers face with savings account interest rates?",
+        "faithfulness": 0.82,
+        "answer_relevancy": 0.85
+    },
+    {
+        "question": "What are the main reasons for debt collection complaints mentioned?",
+        "faithfulness": 0.90,
+        "answer_relevancy": 0.94
+    },
+    {
+        "question": "Describe problems related to money transfers and virtual currency.",
+        "faithfulness": 0.75,
+        "answer_relevancy": 0.80
+    },
+    {
+        "question": "What do consumers complain about regarding personal loan fees?",
+        "faithfulness": 0.86,
+        "answer_relevancy": 0.89
+    },
+    {
+        "question": "How are identity theft complaints described in the narratives?",
+        "faithfulness": 0.92,
+        "answer_relevancy": 0.95
+    },
+    {
+        "question": "What are the recurring problems with credit card rewards programs?",
+        "faithfulness": 0.84,
+        "answer_relevancy": 0.88
+    },
+    {
+        "question": "What issues do people have with bank account service fees?",
+        "faithfulness": 0.89,
+        "answer_relevancy": 0.91
+    }
+]

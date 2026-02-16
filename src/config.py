@@ -11,6 +11,7 @@ class PathConfig:
     raw_data_path: str = os.path.join(BASE_DIR, "data", "raw", "complaints.csv")
     processed_data_path: str = os.path.join(BASE_DIR, "data", "processed", "complaints_processed.parquet")
     vector_store_dir: str = os.path.join(BASE_DIR, "vector_store")
+    reports_dir: str = os.path.join(BASE_DIR, "reports")
 
 @dataclass(frozen=True)
 class DataConfig:

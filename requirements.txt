@@ -26,6 +26,10 @@ streamlit
 python-dotenv
 huggingface-hub
 
+# Advanced RAG & Evaluation
+rank_bm25
+ragas
+
 # Development
 pytest
 jupyter
