@@ -16,7 +16,7 @@ def plot_complaint_distribution(df: pd.DataFrame, output_path: str = "reports/fi
     """Generates and saves a bar plot of complaint distribution."""
     plt.figure(figsize=(10, 6))
     dist = get_complaint_distribution(df)
-    sns.barplot(x=dist.values, y=dist.index, palette="viridis")
+    sns.barplot(x=dist.values, y=dist.index, hue=dist.index, palette="viridis", legend=False)
     plt.title("Consumer Complaints by Product Category")
     plt.xlabel("Number of Complaints")
     plt.ylabel("Product")

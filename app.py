@@ -204,7 +204,7 @@ with tab2:
         with col_left:
             st.subheader("🗂️ Complaint Distribution")
             dist_path = plot_complaint_distribution(df_data)
-            st.image(dist_path, use_container_width=True)
+            st.image(dist_path, width='stretch')
         
         with col_right:
             st.subheader("💡 Market Insights")
@@ -226,7 +226,7 @@ with tab2:
         if selected_cat:
             shap_path = plot_feature_importance(selected_cat)
             if shap_path:
-                st.image(shap_path, caption=f"SHAP Values for {selected_cat}", use_container_width=True)
+                st.image(shap_path, caption=f"SHAP Values for {selected_cat}", width='stretch')
             else:
                 st.write("Explanations are being generated for this category...")
 
@@ -246,7 +246,7 @@ with tab2:
                 m2.metric("Answer Relevancy", f"{avg_relevancy:.2%}", help="Measures how relevant the answer is to the user question.")
                 
                 with st.expander("🔍 View Detailed Question-Level Scoring"):
-                    st.dataframe(metrics_df[['question', 'faithfulness', 'answer_relevancy']], use_container_width=True)
+                    st.dataframe(metrics_df[['question', 'faithfulness', 'answer_relevancy']], width='stretch')
             except Exception as e:
                 st.error(f"Error loading evaluation metrics: {e}")
         else:

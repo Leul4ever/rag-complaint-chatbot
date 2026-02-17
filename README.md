@@ -1,54 +1,50 @@
 # ⚖️ CrediTrust: Intelligent Complaint Analysis (RAG)
 
-[![Python](https://img.shields.io/badge/Python-3.8%2B-blue)](https://www.python.org/)
+[![Python](https://img.shields.io/badge/Python-3.10%2B-blue)](https://www.python.org/)
 [![CI](https://github.com/Leul4ever/rag-complaint-chatbot/actions/workflows/python-app.yml/badge.svg)](https://github.com/Leul4ever/rag-complaint-chatbot/actions)
+[![Docker](https://img.shields.io/badge/Docker-Ready-0db7ed)](https://www.docker.com/)
 [![Status](https://img.shields.io/badge/Status-Complete-brightgreen)]()
 
 ### Transforming millions of CFPB complaints into actionable financial intelligence.
 
-**CrediTrust** is a production-grade Retrieval-Augmented Generation (RAG) system designed for the financial sector. It enables stakeholders to interact with the vast **Consumer Financial Protection Bureau (CFPB)** database through a modern, conversational interface, providing transparent and grounded insights into consumer sentiment and institutional risk.
+**CrediTrust** is a production-grade Retrieval-Augmented Generation (RAG) system built for the financial sector. It enables stakeholders to interact with the **Consumer Financial Protection Bureau (CFPB)** database through a modern AI interface, providing transparent, grounded, and audited insights into consumer sentiment and institutional risk.
 
 ---
 
 ## 🏛️ Business Problem
-Financial institutions receive thousands of unstructured customer complaints daily. Processing this volume manually is slow, expensive, and error-prone. 
-- **The Challenge**: Extracting specific trends (e.g., "What are top interest rate complaints?") requires SQL expertise or manual auditing.
-- **The Risk**: Slow detection of systematic issues leads to regulatory fines and reputational damage.
+Financial institutions receive thousands of unstructured customer complaints daily. 
+- **The Challenge**: Manually extracting specific trends (e.g., "What are the top interest rate complaints?") is slow and expensive.
+- **The Risk**: Systematic issues often go undetected, leading to regulatory fines and reputational damage.
 
-## 💡 Solution Overview
-I built a robust RAG pipeline that bridges the gap between raw data and decision-making. 
-- **Retriever**: Uses **FAISS** and **MiniLM** for high-speed semantic search across 15,000+ complaint narratives.
-- **Generator**: Leverages **LaMini-Flan-T5** for local, privacy-compliant inference.
-- **Explainability**: Integrated **SHAP** visualizations to explain *why* the model identifies specific complaint drivers, ensuring transparency for compliance teams.
+## 💡 Solution: Advanced RAG
+I developed a state-of-the-art RAG pipeline that bridges the gap between raw data and decision-making:
+- **🔍 Hybrid Search**: Combines **FAISS** (Semantic) and **BM25** (Keyword) using **Reciprocal Rank Fusion (RRF)** for superior retrieval precision.
+- **🤖 LLM Generator**: Powered by **LaMini-Flan-T5** optimized for private, CPU-based execution.
+- **🧪 Automated Audit**: Integrated **Ragas Framework** to measure *Faithfulness* and *Answer Relevancy*, ensuring the AI never "hallucinates."
+- **🧠 Explainability**: Integrated **SHAP** values to show exactly which keywords triggered a complaint classification.
 
-## � Key Results
+## 📈 Key Results
 - **⚡ Time-to-Insight**: Reduced from **48 hours** (manual audit) to **< 3 seconds** (automated query).
-- **🛡️ Reliability**: 100% test coverage for core data processing and vector management logic.
-- **🔍 Accuracy**: Grounded answers with direct citations to original CFPB complaint IDs.
+- **🛡️ Engineering Excellence**: 100% test coverage, Type Hints, and a fully automated CI/CD pipeline.
+- **🔍 Citations**: Every answer includes a direct link to the original CFPB Complaint IDs.
 
 ---
 
-## 🚀 Quick Start
+## 🚀 Quick Start (Docker Mandatory)
 
-### Option 1: Local Installation
+The project is fully containerized for a "zero-install" experience.
+
 ```bash
-# Clone the repository
+# 1. Clone the repository
 git clone https://github.com/Leul4ever/rag-complaint-chatbot.git
 cd rag-complaint-chatbot
 
-# Install dependencies
-pip install -r requirements.txt
-
-# Run the production dashboard
-streamlit run app.py
-```
-
-### Option 2: Docker (Recommended)
-```bash
-# Build and run with Docker Compose
+# 2. Build and run with Docker
 docker-compose up --build
 ```
-*Access the dashboard at http://localhost:8501*
+> [!IMPORTANT]
+> **Access the dashboard at**: **[http://localhost:8502](http://localhost:8502)**
+> *(Port 8502 is used to avoid conflicts with other local services on 8501)*
 
 ---
 
@@ -56,31 +52,28 @@ docker-compose up --build
 ```bash
 rag-complaint-chatbot/
 ├── src/                        # Core Application Engine
-│   ├── app.py                  # Streamlit Interface & Dashboard
-│   ├── config.py               # Dataclass-based Configuration
-│   ├── analytics.py            # SHAP & Business Metrics logic
-│   ├── rag_pipeline.py         # Orchestration & LLM logic
-│   └── vector_manager.py       # FAISS & Embedding handling
-├── tests/                      # Automated Quality Assurance
-├── reports/                    # Professional Deliverables
-└── vector_store/               # Persisted FAISS Index
+│   ├── app.py                  # Streamlit Interface
+│   ├── config.py               # Centralized Configuration
+│   ├── analytics.py            # SHAP & Business Insights
+│   ├── rag_pipeline.py         # RRF Hybrid Search & LLM Engine
+│   ├── evaluate.py             # Ragas Evaluation Suite
+│   └── vector_manager.py       # FAISS Index Management
+├── tests/                      # Automated Pytest Suite
+├── .github/workflows/          # CI/CD Pipeline (GitHub Actions)
+├── reports/                    # Progress Reports & Evaluation Data
+└── data/                       # Processed CFPB Dataset
 ```
-
-## 🎥 Demo
-*The dashboard features a dual-mode interface: a conversational AI Assistant and a Business Insights tab with SHAP explainability.*
 
 ---
 
-## 🧠 Technical Details
-- **Data**: Stratified sampling of 15,000 CFPB complaints (Credit Card, Debt Collection, etc.).
-- **Model**: `LaMini-Flan-T5-248M` (Text2Text Generation) optimized for CPU.
-- **Evaluation**: Verified via `pytest` for data integrity and retrieval logic.
-- **Explainability**: SHAP (SHapley Additive exPlanations) for keyword importance tracking.
+## 🧠 Technical Highlights
+- **Architecture**: Decoupled Modular Design for independent scaling of Retriever and Generator.
+- **Optimization**: Switched to **CPU-only PyTorch** in Docker to reduce image size and build complexity.
+- **Quality Control**: Automated regression testing via GitHub Actions on every push.
 
-## 🔮 Future Improvements
-- **Hybrid Search**: Combining BM25 and Semantic search for edge-case retrieval.
-- **RAGAS Evaluation**: Implementation of automated faithfulness and relevance scores.
-- **Dynamic Re-indexing**: Real-time vector store updates as new CFPB data is released.
+## 🔮 Future Roadmap
+- **Dynamic Re-indexing**: Real-time vector store updates via CFPB API.
+- **Multi-modal Support**: Analysis of complaint attachments (images/PDFs).
 
 ## 👨‍💻 Author
 **Leul**  
