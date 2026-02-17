@@ -67,7 +67,7 @@ We transformed the initial prototype into a production-ready system through modu
     app-1  | Loading embedding model: all-MiniLM-L6-v2...
     app-1  | Vector store loaded successfully.
     app-1  | You can now view your Streamlit app in your browser.
-    app-1  | Network URL: http://0.0.0.0:8501
+    app-1  | Network URL: http://0.0.0.0:8502
     ```
 
 ### Interactive Dashboard & Business Impact

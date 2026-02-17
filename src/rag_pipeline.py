@@ -28,51 +28,47 @@ class RAGPipeline:
             self.tokenizer = AutoTokenizer.from_pretrained(model_id)
             self.model = AutoModelForSeq2SeqLM.from_pretrained(model_id)
             
-            # Create a pipeline for text2text generation
-            # Note: Explicitly setting device to 'cpu' for stability as requested
-            self.gen_pipeline = pipeline(
-                "text2text-generation",
-                model=self.model,
-                tokenizer=self.tokenizer,
-                device="cpu",
-                max_length=512,
-                do_sample=True,
-                temperature=0.7
-            )
+            # Using CPU for stability
+            self.model.to("cpu")
             
-            logger.info("RAG Pipeline initialized successfully.")
+            logger.info("RAG Pipeline initialized successfully (Direct Model Usage).")
         except Exception as e:
             logger.error(f"Failed to initialize RAG Pipeline: {e}")
             raise
 
     def answer(self, question: str) -> Tuple[str, List[Dict[str, Any]]]:
         """
-        Answer a user question using the RAG pipeline.
-        
-        Args:
-            question: The user's query string.
-            
-        Returns:
-            A tuple containing the generated answer string and a list of source metadata.
+        Full RAG pipeline: retrieval -> prompting -> generation
         """
         try:
             # 1. Retrieve context
-            hits = self.retriever.retrieve(question, k=rag_cfg.top_k)
+            results = self.retriever.retrieve(question)
             
-            if not hits:
+            if not results:
                 return "I don't have enough information to answer that question.", []
             
-            # 2. Format context
-            context_text = "\n\n".join([f"Source {i+1}:\n{hit['content']}" for i, hit in enumerate(hits)])
-            sources = [hit['metadata'] for hit in hits]
+            # Extract content for the model and metadata for the UI
+            context = "\n".join([r['content'] for r in results])
+            sources = [r['metadata'] for r in results]
             
-            # 3. Format prompt using the template from config
-            formatted_prompt = rag_cfg.prompt_template.format(context=context_text, question=question)
+            # 2. Format prompt
+            # T5/FLAN-T5 works best with clear instructions
+            formatted_prompt = f"Answer the following consumer complaint question using the provided context. If the answer is not in the context, say you don't know.\n\nContext: {context}\n\nQuestion: {question}\n\nAnswer:"
             
-            # 4. Generate response
+            # 3. Generate response directly using the model
             logger.info(f"Generating response for question: {question[:50]}...")
-            output = self.gen_pipeline(formatted_prompt)
-            response: str = output[0]['generated_text']
+            
+            inputs = self.tokenizer(formatted_prompt, return_tensors="pt", truncation=True, max_length=1024).to("cpu")
+            
+            outputs = self.model.generate(
+                inputs["input_ids"],
+                max_length=512,
+                do_sample=True,
+                temperature=0.7,
+                top_p=0.9
+            )
+            
+            response = self.tokenizer.decode(outputs[0], skip_special_tokens=True)
             
             return response.strip(), sources
         except Exception as e:

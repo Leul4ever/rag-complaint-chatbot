@@ -1,0 +1,27 @@
+# Exclude all data files
+data/
+data/**
+**/data/**
+
+# Exclude virtual environments
+venv/
+venv/**
+**/venv/**
+
+# Exclude vector stores
+vector_store/
+vector_store/**
+**/vector_store/**
+
+# Exclude all Git and editor artifacts
+.git/
+.github/
+.vscode/
+
+# Exclude cache and notebooks
+notebooks/
+__pycache__/
+.pytest_cache/
+.ipynb_checkpoints/
+*.pyc
+*.log
